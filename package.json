@@ -1,0 +1,19 @@
+{
+  "name": "electron-shadermonki",
+  "version": "1.0.0",
+  "description": "A research Electron app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/gameknife/electron-shadermonki",
+  "keywords": [
+    "Electron",
+    "Shader"
+  ],
+  "author": "GitHub",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.4.1"
+  }
+}
