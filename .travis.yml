@@ -5,5 +5,6 @@ before_install:
   - npm install npm@latest -g
 install:
   - npm install
+  - npm install browserify
 script:
   - npm run build-js
