@@ -4,7 +4,11 @@
   "description": "A research Electron app",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "build --dir",
+    "dist": "build",
+    "watch-js": "watchify main.js -o bundle.js -dv",
+    "build-js": "browserify main.js > bundle.js"
   },
   "repository": "https://github.com/gameknife/electron-shadermonki",
   "keywords": [
@@ -14,6 +18,17 @@
   "author": "GitHub",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.4.1"
+    "electron": "^1.4.1",
+    "electron-packager": "^8.2.0"
+  },
+  "build": {
+  "appId": "gameknife.shadermonki",
+  "mac": {
+    "category": "gameknife.app.category.utils"
+  },
+  "win": {
+    "iconUrl": "(windows-only) https link to icon"
+  }
+  
   }
 }
