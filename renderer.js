@@ -14,11 +14,12 @@ window.onload = function(){
 
     renderer.init();
     // create render loop
-    requestAnimationFrame(render_loop);
+    render_loop();
 
     function render_loop()
     {
         renderer.render();
+        requestAnimationFrame(render_loop);
     }
 };
 
