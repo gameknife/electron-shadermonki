@@ -4,14 +4,27 @@
 
 // initial
 window.onload = function(){
-    win = window;
+    //win = window;
     var canvas = bid('canvas');
     glw = window.parent.glw;
+    renderer = window.parent.renderer;
+
     glw.initGL(canvas);
     if(!glw.ready){console.log('initialize error'); return;}
 
-    // clear with a red color
-    glw.clear([0.7, 0.1, 0.1, 1.0], 1.0);
+    renderer.init();
+    // create render loop
+    requestAnimationFrame(render_loop);
+
+    function render_loop()
+    {
+        renderer.render();
+    }
 };
 
+
+
+
 function bid(id){return document.getElementById(id);}
+
+
