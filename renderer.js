@@ -11,6 +11,7 @@ window.onload = function(){
     var GLSLMode = ace.require("ace/mode/glsl").Mode;
     this.editor_vs.session.setMode(new GLSLMode());
     this.editor_vs.setValue(vsp);
+    this.editor_vs.clearSelection();
     this.editor_vs.commands.addCommand({
         name: 'save to',
         bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
@@ -30,6 +31,7 @@ window.onload = function(){
     var GLSLMode = ace.require("ace/mode/glsl").Mode;
     this.editor_fs.session.setMode(new GLSLMode());
     this.editor_fs.setValue(fsp);
+    this.editor_fs.clearSelection();
     this.editor_fs.commands.addCommand({
         name: 'save to',
         bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
@@ -56,6 +58,8 @@ window.onload = function(){
     if(!glw.ready){console.log('initialize error'); return;}
 
     renderer.init();
+
+    window.parent.renderer.updateShader(vsp, fsp);
 
     this.running = true;
     // create render loop

@@ -91,8 +91,6 @@ html, body {
 }
 
 #right .vs-editor {
-     font-family: 'consolas', 'Monaco', monospace;
-     color: #fff;
      background-color: #333;
      font-size: 14px;
      bottom: 50%;
@@ -104,8 +102,6 @@ html, body {
  }
 
 #right .fs-editor {
-    font-family: 'consolas', 'Monaco', monospace;
-    color: #fff;
     background-color: #333;
     font-size: 14px;
     top: 50%;
@@ -117,10 +113,11 @@ html, body {
 }
 
 #right .editor {
-    font-family: 'consolas', 'Monaco', monospace;
+    font-family: 'consolas', 'Menlo', monospace;
     color: #fff;
     background-color: #333;
-    font-size: 14px;
+    font-size: 12px;
+    line-height: 1.25;
     width: 100%;
     height: 95%;
     /*display: none;*/
