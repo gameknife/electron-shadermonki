@@ -6,14 +6,31 @@
 window.onload = function(){
 
 
-    this.editorPanel = ace.edit("editorPanel");
-    this.editorPanel.setTheme('ace/theme/twilight');
+    this.editor_vs = ace.edit("vs-editor-panel");
+    this.editor_vs.setTheme('ace/theme/twilight');
     var GLSLMode = ace.require("ace/mode/glsl").Mode;
-    this.editorPanel.session.setMode(new GLSLMode());
+    this.editor_vs.session.setMode(new GLSLMode());
+    this.editor_vs.setValue(vsp);
+    this.editor_vs.commands.addCommand({
+        name: 'save to',
+        bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+        exec: function(editor) {
+            //...
+            console.info("edit saving...");
+            vsp = editor.getValue();
+            window.parent.renderer.updateShader(vsp, fsp);
+        },
+        readOnly: true // false if this command should not apply in readOnly mode
+    });
 
-    this.editorPanel.setValue(fsp);
 
-    this.editorPanel.commands.addCommand({
+
+    this.editor_fs = ace.edit("fs-editor-panel");
+    this.editor_fs.setTheme('ace/theme/twilight');
+    var GLSLMode = ace.require("ace/mode/glsl").Mode;
+    this.editor_fs.session.setMode(new GLSLMode());
+    this.editor_fs.setValue(fsp);
+    this.editor_fs.commands.addCommand({
         name: 'save to',
         bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
         exec: function(editor) {
@@ -24,6 +41,7 @@ window.onload = function(){
         },
         readOnly: true // false if this command should not apply in readOnly mode
     });
+
 
     //win = window;
     var canvas = bid('canvas');
@@ -67,23 +85,23 @@ window.onload = function(){
 function bid(id){return document.getElementById(id);}
 
 var vsp = "\
-attribute vec2 texcoord;\
-attribute vec3 normal;\
-attribute vec3 position;\
-uniform mat4 _MVP;\
-\
-\
-varying vec2 vTexCoord;\
-varying vec3 vNormal;\
-\
-void main(){\
-\
-    vTexCoord = ((position + 1.0) * 0.5).xy;\
-    vTexCoord = texcoord;\
-    vNormal = normal;\
-    /*gl_Position = vec4(position, 1.0);*/\
-    gl_Position = _MVP * vec4(position, 1.0);\
-}\
+attribute vec2 texcoord;\r\
+attribute vec3 normal;\r\
+attribute vec3 position;\r\
+uniform mat4 _MVP;\r\
+\r\
+\r\
+varying vec2 vTexCoord;\r\
+varying vec3 vNormal;\r\
+\r\
+void main(){\r\
+\r\
+    vTexCoord = ((position + 1.0) * 0.5).xy;\r\
+    vTexCoord = texcoord;\r\
+    vNormal = normal;\r\
+    /*gl_Position = vec4(position, 1.0);*/\r\
+    gl_Position = _MVP * vec4(position, 1.0);\r\
+}\r\
 ";
 
 var fsp = "precision mediump float;\r\
