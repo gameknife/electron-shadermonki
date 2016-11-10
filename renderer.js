@@ -13,14 +13,27 @@ window.onload = function(){
     if(!glw.ready){console.log('initialize error'); return;}
 
     renderer.init();
+
+    this.running = true;
     // create render loop
     render_loop();
 
     function render_loop()
     {
-        renderer.render();
+        if(this.running) {
+            renderer.render();
+        }
         requestAnimationFrame(render_loop);
     }
+
+    // btn control
+    var playBtn = bid('btn_play');
+    playBtn.onclick = function () {
+        console.info('click');
+        window.running = !window.running;
+    }
+
+
 };
 
 

@@ -5,27 +5,46 @@
   <meta charset="UTF-8">
   <title>shadermonk!</title>
   <link rel="stylesheet" href="style.css" type="text/css">
+  <link rel="stylesheet" href="blacktie/css/black-tie.min.css">
   <script src="lib/glwrap.js" type="text/javascript"></script>
   <script src="lib/gk-math.js" type="text/javascript"></script>
   <script src="lib/gk-render.js" type="text/javascript"></script>
 </head>
 
 <body>
-  <div id="left">
-    <canvas id="canvas" width="512" height="512"></canvas>
+  <div id="toolbar">
+    <div id="group_center" class="grp_control">
+      <button class="btn_play" id="btn_play"><i class="btm bt-play bt-fw"></i></button>
+      <button class="btn_play" id="btn_pause"><i class="btm bt-pause bt-fw"></i></button>
+      <button class="btn_play" id="btn_next"><i class="btm bt-next bt-fw"></i></button>
+    </div>
+    </div>
+  <div id="mainframe">
+
+    <div id="left">
+      <canvas id="canvas" width="512" height="512"></canvas>
+    </div>
+
+    <div id="right">
+
+      <div id="editorPanel" class="editor">
+        <h1>Shader MonKI</h1>
+        <!-- All of the Node.js APIs are available in this renderer process. -->
+        [info]We are using Node.js <script>document.write(process.versions.node)</script>, Chromium <script>document.write(process.versions.chrome)</script>,
+        and Electron <script>document.write(process.versions.electron)</script>.
+
+      </div>
+    </div>
+
+
   </div>
 
-  <div id="right">
+  <div id="status_bar">
+    <div id="status_info", class="content">
+      <i class="btl bt-info-circle"></i>   ready.
+      </div>
 
-  <div id="editorPanel" class="editor">
-    <h1>Shader MonKI</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    [info]We are using Node.js <script>document.write(process.versions.node)</script>, Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-
-  </div>
-
-  </div>
+    </div>
 </body>
 
 <script>
