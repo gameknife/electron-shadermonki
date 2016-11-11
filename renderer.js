@@ -48,6 +48,10 @@ window.onload = function(){
         readOnly: true // false if this command should not apply in readOnly mode
     });
 
+
+    logger = window.parent.logger;
+    logger.init(window);
+
     //win = window;
     var canvas = bid('canvas');
     glw = window.parent.glw;
