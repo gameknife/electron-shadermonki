@@ -3,6 +3,8 @@ electron-shadermonki
 
 [![Build Status](https://travis-ci.org/gameknife/electron-shadermonki.svg?branch=master)](https://travis-ci.org/gameknife/electron-shadermonki)
 
+![ss](screenshot.png)
+
 a research [rendermonkey](http://developer.amd.com/tools-and-sdks/archive/games-cgi/rendermonkey-toolsuite/) like app based on [electron](https://github.com/electron/electron)
 
 ### Startup
@@ -25,10 +27,10 @@ cnpm install
 npm start
 ```
 
-### Struct
+### Usage
 
-1. gkengine like glwrapper
-1. math lib
+* edit vs & fs shader file
+* press Ctrl + S || Command + S to save change, preview will change at realtime.
 
 ### Future Task
 
@@ -38,6 +40,6 @@ npm start
 
 ### Thanks to
 
-[ACE](https://github.com/ajaxorg/ace)
-[glcubic.js](https://github.com/doxas/glcubic.js)
-[three.js](https://github.com/mrdoob/three.js)
+* [ACE](https://github.com/ajaxorg/ace)
+* [glcubic.js](https://github.com/doxas/glcubic.js)
+* [three.js](https://github.com/mrdoob/three.js)
