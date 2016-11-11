@@ -26,16 +26,14 @@ html, body {
     margin: 0 auto;
 }
 
-#toolbar .btn_play {
+#toolbar .btn_play, .btn_playing {
     width: 48px;
     height: 28px;
     line-height: 30px;
     margin-top: 4px;
     border: 1px solid #333;
     border-radius: 4px;
-    background: #444;
-    background: -webkit-linear-gradient(top,#444,#333);
-    background: linear-gradient(to bottom,#444,#333);
+
     box-shadow: 0 1px 2px rgba(0,0,0,.05),inset 0 1px 1px rgba(255,255,255,.25);
     color: #fff;
     font-size: 10px;
@@ -44,13 +42,30 @@ html, body {
     cursor: pointer;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
-
 }
 
-#toolbar .btn_play:active {
+#toolbar .btn_play {
+    background: #444;
+    background: -webkit-linear-gradient(top,#444,#333);
+    background: linear-gradient(to bottom,#444,#333);
+}
+
+#toolbar .btn_playing {
     background: #47c;
     background: -webkit-linear-gradient(top,#47c,#46a);
     background: linear-gradient(to bottom,#47c,#46a);
+}
+
+#toolbar .btn_play:hover {
+    color: #47c;
+    background: -webkit-linear-gradient(top,#333,#444);
+    background: linear-gradient(to bottom,#333,#444);
+}
+
+#toolbar .btn_playing:hover {
+    color: #222;
+    background: -webkit-linear-gradient(top,#46a,#47c);
+    background: linear-gradient(to bottom,#46a,#47c);
 }
 
 #mainframe {
