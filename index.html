@@ -25,21 +25,30 @@
   <div id="mainframe">
 
     <div id="left">
-      <div id="canvas-title" class="title-bar">
-        preview
-      </div>
-      <canvas id="canvas" width="512" height="512"></canvas>
+        <div class="canvas-frame">
+            <div class="title-bar">
+                preview
+            </div>
+            <canvas id="canvas" width="512" height="512"></canvas>
+        </div>
+        <div class="console-frame">
+            <div class="title-bar">
+                console
+            </div>
+        </div>
+
     </div>
 
     <div id="right">
-      <div class="vs-editor">
+      <div class="editor-frame">
         <div class="title-bar">
           vertex shader
           </div>
-        <div id="vs-editor-panel" class="editor">
-          </div>
+          <div id="vs-editor-panel" class="editor">
         </div>
-      <div class="fs-editor">
+
+        </div>
+      <div class="editor-frame">
         <div class="title-bar">
           fragment shader
         </div>
@@ -52,7 +61,7 @@
   </div>
 
   <div id="status_bar">
-    <div id="status_info", class="content">
+    <div id="status_info", class="status-content">
       <i class="btl bt-info-circle"></i>   ready.
       </div>
 
