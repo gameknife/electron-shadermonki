@@ -5,7 +5,6 @@
 // initial
 window.onload = function(){
 
-
     this.editor_vs = ace.edit("vs-editor-panel");
     this.editor_vs.setTheme('ace/theme/twilight');
     var GLSLMode = ace.require("ace/mode/glsl").Mode;
@@ -24,14 +23,19 @@ window.onload = function(){
         readOnly: true // false if this command should not apply in readOnly mode
     });
 
-
-
     this.editor_fs = ace.edit("fs-editor-panel");
     this.editor_fs.setTheme('ace/theme/twilight');
     var GLSLMode = ace.require("ace/mode/glsl").Mode;
     this.editor_fs.session.setMode(new GLSLMode());
     this.editor_fs.setValue(fsp);
     this.editor_fs.clearSelection();
+
+    this.editor_fs.getSession().on('change', function(e) {
+        // e.type, etc
+        fsp = window.editor_fs.getValue();
+        window.parent.renderer.updateShader(vsp, fsp);
+    });
+
     this.editor_fs.commands.addCommand({
         name: 'save to',
         bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
@@ -44,15 +48,10 @@ window.onload = function(){
         readOnly: true // false if this command should not apply in readOnly mode
     });
 
-
     //win = window;
     var canvas = bid('canvas');
     glw = window.parent.glw;
     renderer = window.parent.renderer;
-
-
-
-
 
     glw.initGL(canvas);
     if(!glw.ready){console.log('initialize error'); return;}
@@ -82,9 +81,6 @@ window.onload = function(){
 
 
 };
-
-
-
 
 function bid(id){return document.getElementById(id);}
 
