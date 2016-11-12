@@ -5,6 +5,7 @@
 
 const logger    = require('./lib/gk-logger.js');
 const glw       = require('./lib/gk-glwrap.js');
+const mouse     = require('./lib/gk-mouseorbit.js');
 
 // initial
 window.onload = function(){
@@ -62,6 +63,8 @@ window.onload = function(){
     var canvas = bid('canvas');
     var renderer = window.parent.renderer;
 
+    mouse.init(canvas);
+
     glw.initGL(canvas);
     if(!glw.ready){console.log('initialize error'); return;}
 
@@ -109,6 +112,7 @@ attribute vec2 texcoord;\r\
 attribute vec3 normal;\r\
 attribute vec3 position;\r\
 uniform mat4 _MVP;\r\
+uniform mat4 _M2W;\r\
 \r\
 \r\
 varying vec2 vTexCoord;\r\
@@ -118,7 +122,7 @@ void main(){\r\
 \r\
     vTexCoord = ((position + 1.0) * 0.5).xy;\r\
     vTexCoord = texcoord;\r\
-    vNormal = normal;\r\
+    vNormal = (_M2W * vec4(normal, 0.0)).xyz;\r\
     /*gl_Position = vec4(position, 1.0);*/\r\
     gl_Position = _MVP * vec4(position, 1.0);\r\
 }\r\

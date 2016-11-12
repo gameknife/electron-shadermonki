@@ -4,3 +4,4 @@ dist
 bundle.js
 .idea
 *.log
+*.c4d
