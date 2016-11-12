@@ -138,7 +138,7 @@ void main(){\r\
     vec4 samplerColor2 = vec4(vNormal * vec3(0.5,0.5,0.5) + vec3(0.5,0.5,0.5),1);\r\
     float ndotl = max(0.0, dot(_LIGHTDIR.xyz, vNormal));\r\
     vec4 samplerColor = vec4(1.0,0.95,0.5,1.0);\r\
-    samplerColor = samplerColor * ndotl + vec4(0.3,0.4,0.7,1.0) * (vNormal.y * 0.25 + 0.75);\r\
+    samplerColor = samplerColor * ndotl + vec4(0.3,0.4,0.7,1.0) * (vNormal.y * 0.4 + 0.6);\r\
     samplerColor.a = 1.0;\r\
     gl_FragColor = sqrt(samplerColor);\r\
 }\
