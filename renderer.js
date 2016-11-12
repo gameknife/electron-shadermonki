@@ -65,7 +65,7 @@ window.onload = function(){
     window.parent.renderer.updateShader(vsp, fsp);
 
     this.running = true;
-
+    refresh_playbtn();
     // create render loop
     render_loop();
     function render_loop()
@@ -76,28 +76,26 @@ window.onload = function(){
         requestAnimationFrame(render_loop);
     }
 
-    this.running = false;
-
     // btn control
     var playBtn = bid('btn_play');
     playBtn.onclick = function () {
         console.info('click');
         window.running = !window.running;
-        var element = bid('btn_play');
-
-        if(window.running)
-        {
-            element.className = 'btn_playing';
-        }
-        else
-        {
-            element.className = 'btn_play';
-        }
-
+        refresh_playbtn();
     }
 
 
 };
+
+function refresh_playbtn() {
+    var element = bid('btn_play');
+    if (window.running) {
+        element.className = 'btn_playing';
+    }
+    else {
+        element.className = 'btn_play';
+    }
+}
 
 function bid(id){return document.getElementById(id);}
 

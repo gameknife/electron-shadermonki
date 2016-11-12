@@ -19,7 +19,9 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^1.4.1",
-    "electron-packager": "^8.2.0"
+    "electron-packager": "^8.2.0",
+    "bluebird": "^3.4.6",
+    "fs-promise": "^1.0.0"
   },
   "build": {
   "appId": "gameknife.shadermonki",
