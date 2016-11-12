@@ -1,6 +1,10 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
+'use strict'
+
+const logger    = require('./lib/gk-logger.js');
+const glw       = require('./lib/gk-glwrap.js');
 
 // initial
 window.onload = function(){
@@ -49,13 +53,14 @@ window.onload = function(){
     });
 
 
-    logger = window.parent.logger;
-    logger.init(window);
+    //logger = window.parent.logger;
+    logger.init(bid('console-log-container'));
+
+    logger.info('test');
 
     //win = window;
     var canvas = bid('canvas');
-    glw = window.parent.glw;
-    renderer = window.parent.renderer;
+    var renderer = window.parent.renderer;
 
     glw.initGL(canvas);
     if(!glw.ready){console.log('initialize error'); return;}
@@ -70,7 +75,7 @@ window.onload = function(){
     render_loop();
     function render_loop()
     {
-        if(this.running) {
+        if(window.running) {
             renderer.render();
         }
         requestAnimationFrame(render_loop);
