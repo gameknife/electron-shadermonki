@@ -26,10 +26,10 @@ html, body {
     margin: 0 auto;
 }
 
-#toolbar .btn_play, .btn_playing {
-    width: 48px;
-    height: 28px;
-    line-height: 30px;
+
+.btn_play, .btn_play_on, .btn_square, .btn_square_on {
+
+    line-height: 28px;
     margin-top: 4px;
     border: 1px solid #333;
     border-radius: 4px;
@@ -42,27 +42,36 @@ html, body {
     cursor: pointer;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
-}
 
-#toolbar .btn_play {
     background: #444;
     background: -webkit-linear-gradient(top,#444,#333);
     background: linear-gradient(to bottom,#444,#333);
 }
 
-#toolbar .btn_playing {
+.btn_square, .btn_square_on {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+}
+
+.btn_play, .btn_play_on {
+    width: 48px;
+    height: 28px;
+}
+
+.btn_play_on, .btn_square_on  {
     background: #47c;
     background: -webkit-linear-gradient(top,#47c,#46a);
     background: linear-gradient(to bottom,#47c,#46a);
 }
 
-#toolbar .btn_play:hover {
+.btn_play:hover, .btn_square:hover {
     color: #47c;
     background: -webkit-linear-gradient(top,#333,#444);
     background: linear-gradient(to bottom,#333,#444);
 }
 
-#toolbar .btn_playing:hover {
+.btn_play_on:hover, .btn_square_on:hover {
     color: #222;
     background: -webkit-linear-gradient(top,#46a,#47c);
     background: linear-gradient(to bottom,#46a,#47c);
@@ -106,6 +115,29 @@ html, body {
 
 #left .canvas-frame {
     height: 536px;
+    position: relative;
+}
+
+#left .canvas-ctlbtn {
+    position: absolute;
+    top: 20px;
+    width: 512px;
+    height: 30px;
+}
+
+#left .canvas-ctlbtn-cgrp {
+    position: relative;
+    top: -512px;
+    width: 100px;
+    margin: 0 auto;
+}
+
+#left .canvas-ctlbtn-rgrp {
+    position: relative;
+    top: -340px;
+    left: 480px;
+    width: 34px;
+    height: 120px;
 }
 
 #left .console-frame {

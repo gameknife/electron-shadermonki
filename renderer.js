@@ -73,7 +73,7 @@ window.onload = function(){
     window.parent.renderer.updateShader(vsp, fsp);
 
     this.running = true;
-    refresh_playbtn();
+    refresh_playbtn('btn_play', 'btn_play', window.running);
     // create render loop
     render_loop();
     function render_loop()
@@ -85,23 +85,32 @@ window.onload = function(){
     }
 
     // btn control
-    var playBtn = bid('btn_play');
-    playBtn.onclick = function () {
-        console.info('click');
-        window.running = !window.running;
-        refresh_playbtn();
+    {
+        var playBtn = bid('btn_play');
+        playBtn.onclick = function () {
+            window.running = !window.running;
+            refresh_playbtn('btn_play', 'btn_play', window.running);
+        }
     }
 
+    {
+        // btn control
+        let playBtn = bid('btn_auto_rotate');
+        playBtn.onclick = function () {
+            renderer.autoRotate = !renderer.autoRotate;
+            refresh_playbtn('btn_auto_rotate', 'btn_square', renderer.autoRotate);
+        }
+    }
 
 };
 
-function refresh_playbtn() {
-    var element = bid('btn_play');
-    if (window.running) {
-        element.className = 'btn_playing';
+function refresh_playbtn( element_id, element_class, swt ) {
+    var element = bid(element_id);
+    if ( swt ) {
+        element.className = element_class + '_on';
     }
     else {
-        element.className = 'btn_play';
+        element.className = element_class;
     }
 }
 
