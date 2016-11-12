@@ -57,7 +57,7 @@ window.onload = function(){
     //logger = window.parent.logger;
     logger.init(bid('console-log-container'));
 
-    logger.info('test');
+    logger.info('shadermonki started.');
 
     //win = window;
     var canvas = bid('canvas');
