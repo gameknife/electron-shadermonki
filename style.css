@@ -191,6 +191,13 @@ html, body {
 
 #right {
     height: 100%;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+#project-bar {
+    height: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
