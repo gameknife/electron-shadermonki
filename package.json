@@ -19,19 +19,21 @@
   "devDependencies": {
     "electron": "^1.4.1",
     "electron-packager": "^8.2.0",
-    "bluebird": "^3.4.6",
-    "fs-promise": "^1.0.0",
     "browserify": "^13.1.1",
     "watchify": "^3.7.0"
   },
   "build": {
-  "appId": "gameknife.shadermonki",
-  "mac": {
-    "category": "gameknife.app.category.utils"
+    "appId": "gameknife.shadermonki",
+    "mac": {
+      "category": "gameknife.app.category.utils"
+    },
+    "win": {
+      "iconUrl": "(windows-only) https link to icon"
+    }
   },
-  "win": {
-    "iconUrl": "(windows-only) https link to icon"
-  }
-  
+  "dependencies": {
+    "fs-extra": "^1.0.0",
+    "bluebird": "^3.4.6",
+    "fs-promise": "^1.0.0"
   }
 }
