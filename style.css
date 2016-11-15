@@ -175,20 +175,27 @@ html, body {
     background-color: #222;
 }
 
-.obj-line {
+.obj-line, .obj-line-checked {
     line-height: 16px;
     padding: 2px 10px;
     border: hidden;
 
-    color: #ccc;
+    color: #aaa;
     font-size: 14px;
     text-align: center;
     outline: 0;
     cursor: pointer;
 
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+
     background: #333;
 }
 
+.obj-line-checked {
+    color: #fff;
+    background: #47c;
+}
 .obj-line:hover {
     color: #fff;
 }

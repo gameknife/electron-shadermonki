@@ -6,9 +6,8 @@
 const logger    = require('./lib/gk-logger.js');
 const glw       = require('./lib/gk-glwrap.js');
 const mouse     = require('./lib/gk-mouseorbit.js');
-const fs        = require('fs-extra');
 const res       = require('./lib/gk-resmgr');
-const path      = require('path');
+const resPanel  = require('./lib/gk-respanel')
 
 // initial
 window.onload = function(){
@@ -76,177 +75,10 @@ window.onload = function(){
     window.parent.renderer.updateShader(vsp, fsp);
 
     // filter it and put it into resource manager
-    window.resMgr = new res.BaseResMgr();
-
-    let filelist = fs.walkSync(__dirname + '/res/');
-    filelist.forEach( item => {
-        item = path.relative( __dirname, item );
-        window.resMgr.add_res(item);
-    });
-
-
-    let resFolderStruct = { '_folded' : false, '_name': 'root', '_child' : {} };
-    // build the folder struct
-    window.resMgr.resrefs.forEach( item => {
-        let folders = item.filetoken.split('/');
-
-        let currFolderLevel = resFolderStruct;
-
-        // go check the folder links, choose the last
-        for( let i=0; i < folders.length; ++i)
-        {
-            if( i === folders.length - 1)
-            {
-                // leaf
-                currFolderLevel._child[folders[i]] = item;
-                break;
-            }
-
-            if( folders[i] in currFolderLevel._child )
-            {
-                currFolderLevel = currFolderLevel._child[folders[i]];
-            }
-            else
-            {
-                currFolderLevel._child[folders[i]] = { '_folded' : true, '_child' : {} };
-                currFolderLevel._child[folders[i]]._name = folders[i];
-
-                currFolderLevel = currFolderLevel._child[folders[i]];
-            }
-        }
-    });
-
-    console.info(resFolderStruct);
-
-    // dispatch res to resouce
-    let resContainer = bid('res-container');
-
-    function list_folder(folderStruct, container, depth) {
-
-        for (let element in folderStruct._child) {
-
-            let folder = folderStruct._child[element];
-            if(folder === undefined)
-            {
-                break;
-            }
-            var obj_container = document.createElement('div');
-            obj_container.style.padding = '2px ' + depth + 'px';
-            var log_line = document.createElement('button');
-            obj_container.appendChild(log_line);
-
-
-            if (folder instanceof res.BaseResObj)
-            {
-                log_line.onclick = function () {
-
-                    // load mesh fast
-                    window.parent.renderer.updateMesh( folder.filetoken );
-
-                }
-
-
-                log_line.id = 'btn-' + folder.filetoken;
-                log_line.className = 'obj-line';
-
-                var log_icon = document.createElement('i');
-
-                switch (folder.get_type()) {
-                    case res.RESTYPE.MESH:
-                        log_icon.className = 'btm bt-database';
-                        break;
-                    case res.RESTYPE.TEXTURE:
-                        log_icon.className = 'bts bt-photo';
-                        break;
-                }
-
-                log_icon.style.color = '#8af';
-                log_line.appendChild(log_icon);
-
-                var log_text = document.createTextNode(' ' + folder.filetoken.split('/').pop());
-                log_line.appendChild(log_text);
-                container.appendChild(obj_container);
-            }
-            else
-            {
-                log_line.onclick = function () {
-                    folder._folded = !folder._folded;
-                    clean_folder(resContainer);
-                    list_folder(resFolderStruct, resContainer, 1);
-                }
-
-
-                log_line.id = 'folder-' + folder._name;
-                log_line.className = 'obj-line';
-
-                var log_icon = document.createElement('i');
-                if (folder._folded) {
-                    log_icon.className = 'bts bt-folder';
-                }
-                else
-                {
-                    log_icon.className = 'btm bt-folder';
-                }
-
-                log_icon.style.color = '#8af';
-                log_line.appendChild(log_icon);
-
-                var log_text = document.createTextNode(' ' + folder._name);
-                log_line.appendChild(log_text);
-                container.appendChild(obj_container);
-
-                if (folder._folded) {
-
-                }
-                else
-                {
-                    console.info(folder);
-                    list_folder(folder, container, depth + 10);
-                }
-            }
-
-
-            //var log_icon = document.createElement('i');
-
-        }
-        ;
-    }
-
-    function clean_folder(resContainer) {
-        while (resContainer.firstChild) {
-            resContainer.removeChild(resContainer.firstChild);
-        }
-    }
-
-    clean_folder(resContainer);
-    list_folder(resFolderStruct, resContainer, 1);
-
-
-
-
-    //
-    //     // var infotype = line[0];
-    //     var log_icon = document.createElement('i');
-    //     //
-    //     switch (item.get_type()) {
-    //         case res.RESTYPE.MESH:
-    //             log_icon.className = 'btm bt-database';
-    //             log_icon.style.color = '#8af';
-    //             break;
-    //         case res.RESTYPE.TEXTURE:
-    //             log_icon.className = 'bts bt-photo';
-    //             log_icon.style.color = '#8af';
-    //             break;
-    //     }
-    //
-    //     log_line.appendChild(log_icon);
-    //
-    //     var log_text = document.createTextNode(' ' + item.filetoken);
-    //     log_line.appendChild(log_text);
-    //
-    //     container.appendChild(log_line);
-    // });
-
+    resPanel.init(bid('res-container'), __dirname);
+    resPanel.rescan_resources();
+    resPanel.reconstruct_filetree();
+    resPanel.refresh();
 
 
     this.running = true;
