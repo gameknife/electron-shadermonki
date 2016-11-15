@@ -6,7 +6,7 @@
 const logger    = require('./lib/gk-logger.js');
 const glw       = require('./lib/gk-glwrap.js');
 const mouse     = require('./lib/gk-mouseorbit.js');
-const res       = require('./lib/gk-resmgr');
+const resMgr       = require('./lib/gk-resmgr');
 const resPanel  = require('./lib/gk-respanel')
 
 // initial
@@ -79,6 +79,42 @@ window.onload = function(){
     resPanel.rescan_resources();
     resPanel.reconstruct_filetree();
     resPanel.refresh();
+
+    let holder = bid('mesh-holder');
+    holder.ondrop = function( ev ) {
+
+        ev.preventDefault();
+        var filetoken = ev.dataTransfer.getData("restoken");
+
+        let type = 0;
+        let resobj = resMgr.gResmgr.get_res(filetoken);
+        if( resobj !== null )
+        {
+            type = resobj.get_type();
+
+            if(type === resMgr.RESTYPE.MESH)
+            {
+                //create a mesh element
+                let _ret = resPanel.create_res_showobj(0, filetoken, type);
+
+                resPanel.clean_folder(this);
+                this.appendChild(_ret.obj_container);
+
+                // load mesh here
+                resobj.load();
+
+                resPanel.refresh();
+
+                window.parent.renderer.updateMesh(resobj);
+            }
+
+        }
+
+    }
+
+    holder.ondragover = function (ev) {
+        ev.preventDefault();
+    }
 
 
     this.running = true;

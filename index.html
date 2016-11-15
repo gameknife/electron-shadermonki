@@ -2,43 +2,42 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>shadermonk!</title>
-  <link rel="stylesheet" href="style.css" type="text/css">
-  <link rel="stylesheet" href="blacktie/css/black-tie.min.css">
+    <meta charset="UTF-8">
+    <title>shadermonk!</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="blacktie/css/black-tie.min.css">
 
-  <!-- main logic -->
-  <script src="lib/gk-render.js" type="text/javascript"></script>
-  <script src="lib/loader/loader-fbx.js" type="text/javascript"></script>
+    <!-- main logic -->
+    <script src="lib/gk-render.js" type="text/javascript"></script>
 
-  <!-- ace editor -->
-  <script src="lib/ace/ace.js" type="text/javascript"></script>
-  <script src="lib/ace/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
-  <script src="lib/ace/mode-glsl.js" type="text/javascript" charset="utf-8"></script>
+    <!-- ace editor -->
+    <script src="lib/ace/ace.js" type="text/javascript"></script>
+    <script src="lib/ace/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/ace/mode-glsl.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body>
-  <div id="toolbar">
+<div id="toolbar">
     <div id="group_center" class="grp_control">
-      <button class="btn_play" id="btn_play"><i class="btm bt-play bt-fw"></i></button>
-      <button class="btn_play" id="btn_pause"><i class="btm bt-pause bt-fw"></i></button>
-      <button class="btn_play" id="btn_next"><i class="btm bt-next bt-fw"></i></button>
+        <button class="btn_play" id="btn_play"><i class="btm bt-play bt-fw"></i></button>
+        <button class="btn_play" id="btn_pause"><i class="btm bt-pause bt-fw"></i></button>
+        <button class="btn_play" id="btn_next"><i class="btm bt-next bt-fw"></i></button>
     </div>
-    </div>
-  <div id="mainframe">
+</div>
+<div id="mainframe">
 
     <div id="left">
         <div class="canvas-frame">
             <div class="title-bar">
-                preview
+                Preview
             </div>
             <canvas id="canvas" class='interactive-frame' width="512" height="512"></canvas>
 
-                <div class="canvas-ctlbtn-cgrp">
-                    <button class="btn_square" id="btn_auto_rotate"><i class="btm bt-sync bt-spin"></i></button>
-                    <button class="btn_square" id="btn_grid_show"><i class="btm bt-th bt-fw"></i></button>
-                    <button class="btn_square" id="btn_postprocess"><i class="btm bt-flask bt-fw"></i></button>
-                </div>
+            <div class="canvas-ctlbtn-cgrp">
+                <button class="btn_square" id="btn_auto_rotate"><i class="btm bt-sync bt-spin"></i></button>
+                <button class="btn_square" id="btn_grid_show"><i class="btm bt-th bt-fw"></i></button>
+                <button class="btn_square" id="btn_postprocess"><i class="btm bt-flask bt-fw"></i></button>
+            </div>
 
             <div class="canvas-ctlbtn-rgrp">
                 <button class="btn_square" id="btn_light_0"><i class="btm bt-light-bulb bt-fw"></i></button>
@@ -48,52 +47,80 @@
         </div>
         <div class="console-frame">
             <div class="title-bar">
-                console
+                Console
             </div>
-          <div id="console-log-container" class="obj-container">
-          </div>
+            <div id="console-log-container" class="obj-container">
+            </div>
         </div>
     </div>
+
+    <div id="parameter-bar">
+        <div class="title-bar">
+            Parameters
+        </div>
+        <div id="parameter-container" class="obj-container">
+            <div class="parameter-group">
+                Mesh Usage
+                <div class="droped-title">
+                    Rendering Mesh
+                </div>
+                <div id="mesh-holder" class="droped-container">
+                    Drag mesh here!
+                </div>
+            </div>
+
+            <div class="parameter-group">
+                Shader Parameters
+            <div class="droped-title">
+                _Main_Tex
+            </div>
+            <div class="droped-container">
+                Drag texture here!
+            </div>
+            </div>
+        </div>
+    </div>
+
 
     <div id="right">
-      <div class="editor-frame">
-        <div class="title-bar">
-          vertex shader
-          </div>
-          <div id="vs-editor-panel" class="editor">
-        </div>
+        <div class="editor-frame">
+            <div class="title-bar">
+                Vertex Shader Editor
+            </div>
+            <div id="vs-editor-panel" class="editor">
+            </div>
 
         </div>
-      <div class="editor-frame">
-        <div class="title-bar">
-          fragment shader
-        </div>
-        <div id="fs-editor-panel" class="editor">
-        </div>
+        <div class="editor-frame">
+            <div class="title-bar">
+                Fragment Shader Editor
+            </div>
+            <div id="fs-editor-panel" class="editor">
+            </div>
         </div>
     </div>
 
-      <div id="project-bar">
-          <div class="title-bar">
-              Resources
-          </div>
-          <div id="res-container" class="obj-container">
-          </div>
+    <div id="project-bar">
+        <div class="title-bar">
+            Resources
         </div>
-
-  </div>
-
-  <div id="status_bar">
-    <div id="status_info", class="status-content">
-      <i class="btl bt-info-circle"></i>   ready.
-      </div>
-
+        <div id="res-container" class="obj-container">
+        </div>
     </div>
+
+</div>
+
+<div id="status_bar">
+    <div id="status_info" , class="status-content">
+        <i class="btl bt-info-circle"></i> ready.
+    </div>
+
+</div>
 </body>
 
 <script>
     // You can also require other files to run in this process
     require('./renderer.js')
-  </script>
+</script>
 
 </html>
