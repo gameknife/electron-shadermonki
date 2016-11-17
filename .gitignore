@@ -5,3 +5,4 @@ bundle.js
 .idea
 *.log
 *.c4d
+electron-shadermonki*

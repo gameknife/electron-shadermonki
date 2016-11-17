@@ -221,7 +221,13 @@ void main(){\r\
 }\r\
 ";
 
-var fsp = "precision mediump float;\r\
+var fsp = "\
+/*\r\
+\r\
+_MainTex ('Font Texture', 2D) = 'white'\r\
+\r\
+*/\r\
+precision mediump float;\r\
 uniform sampler2D texture;\r\
 varying vec2 vTexCoord;\r\
 varying vec3 vNormal;\r\
