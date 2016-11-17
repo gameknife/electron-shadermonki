@@ -18,6 +18,13 @@ window.onload = function(){
     this.editor_vs.session.setMode(new GLSLMode());
     this.editor_vs.setValue(vsp);
     this.editor_vs.clearSelection();
+
+    this.editor_vs.getSession().on('change', function(e) {
+        // e.type, etc
+        vsp = window.editor_vs.getValue();
+        window.parent.renderer.updateShader(vsp, fsp);
+    });
+
     this.editor_vs.commands.addCommand({
         name: 'save to',
         bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
@@ -102,9 +109,7 @@ window.onload = function(){
 
                 // load mesh here
                 resobj.load();
-
                 resPanel.refresh();
-
                 window.parent.renderer.updateMesh(resobj);
             }
 
@@ -113,6 +118,40 @@ window.onload = function(){
     }
 
     holder.ondragover = function (ev) {
+        ev.preventDefault();
+    }
+
+    let imgholder = bid('image-holder');
+    imgholder.ondrop = function( ev ) {
+
+        ev.preventDefault();
+        var filetoken = ev.dataTransfer.getData("restoken");
+
+        let type = 0;
+        let resobj = resMgr.gResmgr.get_res(filetoken);
+        if( resobj !== null )
+        {
+            type = resobj.get_type();
+
+            if(type === resMgr.RESTYPE.TEXTURE)
+            {
+                //create a mesh element
+                let _ret = resPanel.create_res_showobj(0, filetoken, type, false);
+
+                resPanel.clean_folder(this);
+                this.appendChild(_ret.obj_container);
+
+                // load mesh here
+                resobj.load();
+                resPanel.refresh();
+                window.parent.renderer.updateTexure(resobj);
+            }
+
+        }
+
+    }
+
+    imgholder.ondragover = function (ev) {
         ev.preventDefault();
     }
 
@@ -174,8 +213,8 @@ varying vec3 vNormal;\r\
 \r\
 void main(){\r\
 \r\
-    vTexCoord = ((position + 1.0) * 0.5).xy;\r\
-    vTexCoord = texcoord;\r\
+    vTexCoord = (position * 0.075).xy;\r\
+    //vTexCoord = texcoord;\r\
     vNormal = (_M2W * vec4(normal, 0.0)).xyz;\r\
     /*gl_Position = vec4(position, 1.0);*/\r\
     gl_Position = _MVP * vec4(position, 1.0);\r\
@@ -198,8 +237,8 @@ void main(){\r\
     vec4 samplerColor1 = vec4(frac(vTexCoord.x + _TIME),frac(vTexCoord.y + _TIME),0,1);\r\
     vec4 samplerColor2 = vec4(vNormal * vec3(0.5,0.5,0.5) + vec3(0.5,0.5,0.5),1);\r\
     float ndotl = max(0.0, dot(_LIGHTDIR.xyz, vNormal));\r\
-    vec4 samplerColor = vec4(1.0,0.95,0.5,1.0);\r\
-    samplerColor = samplerColor * ndotl + vec4(0.3,0.4,0.7,1.0) * (vNormal.y * 0.4 + 0.6);\r\
+    vec4 samplerColor = texture2D(texture, vTexCoord.xy);\r\
+    samplerColor = samplerColor * (ndotl + vec4(0.3,0.4,0.5,1.0) * (vNormal.y * 0.4 + 0.6));\r\
     samplerColor.a = 1.0;\r\
     gl_FragColor = sqrt(samplerColor);\r\
 }\
