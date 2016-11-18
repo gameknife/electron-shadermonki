@@ -8,22 +8,10 @@ const glw       = require('./lib/gk-glwrap');
 const mouse     = require('./lib/gk-mouseorbit');
 const resMgr       = require('./lib/gk-resmgr');
 const resPanel  = require('./lib/gk-respanel');
-const editor    = require('./lib/gk-acewrap');
+const acEditor    = require('./lib/gk-acewrap');
 
 // initial
 window.onload = function(){
-
-    // create editor
-    var vseditor = new editor.AceEditorWindow("vs-editor-panel");
-    vseditor.setChangeCallback( function(str) {
-        window.parent.renderer.updateShader(str, null);
-    } )
-
-    var fseditor = new editor.AceEditorWindow("fs-editor-panel");
-    fseditor.setChangeCallback( function(str) {
-        window.parent.renderer.updateShader(null, str);
-    } );
-
     // init logger
     logger.init(bid('console-log-container'));
     logger.info('shadermonki started.');
@@ -44,6 +32,16 @@ window.onload = function(){
     resPanel.reconstruct_filetree();
     resPanel.refresh();
 
+    // create editor
+    var vseditor = new acEditor.AceEditorWindow("vs-editor-panel");
+    vseditor.setChangeCallback( function(str) {
+        window.parent.renderer.updateShader(str, null);
+    } )
+
+    var fseditor = new acEditor.AceEditorWindow("fs-editor-panel");
+    fseditor.setChangeCallback( function(str) {
+        window.parent.renderer.updateShader(null, str);
+    } );
 
     // default assets loading
     vseditor.loadFile('res/shader/base_vs.glsl');
@@ -53,9 +51,6 @@ window.onload = function(){
     let defaulttex = resMgr.gResmgr.get_res('res/texture/plaster.jpg');
     renderer.updateMesh(defaultmesh);
     renderer.updateTexure(defaulttex);
-
-
-
 
     // temporary feature
     let holder = bid('mesh-holder');
