@@ -259,13 +259,22 @@ html, body {
     /*display: none;*/
 }
 
-.title-bar {
+.title-bar, .title-bar-modify, .title-bar-saved  {
     padding: 4px 10px;
     background-color: #444;
     color: #fff;
     font-weight: bold;
     font-size: 12px;
 }
+
+.title-bar-modify {
+    background-color: #a43;
+}
+
+.title-bar-saved {
+    background-color: #4a3;
+}
+
 
 .interactive-frame {
     cursor: pointer;

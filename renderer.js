@@ -3,65 +3,27 @@
 // All of the Node.js APIs are available in this process.
 'use strict'
 
-const logger    = require('./lib/gk-logger.js');
-const glw       = require('./lib/gk-glwrap.js');
-const mouse     = require('./lib/gk-mouseorbit.js');
+const logger    = require('./lib/gk-logger');
+const glw       = require('./lib/gk-glwrap');
+const mouse     = require('./lib/gk-mouseorbit');
 const resMgr       = require('./lib/gk-resmgr');
-const resPanel  = require('./lib/gk-respanel')
+const resPanel  = require('./lib/gk-respanel');
+const editor    = require('./lib/gk-acewrap');
 
 // initial
 window.onload = function(){
 
-    this.editor_vs = ace.edit("vs-editor-panel");
-    this.editor_vs.setTheme('ace/theme/twilight');
-    var GLSLMode = ace.require("ace/mode/glsl").Mode;
-    this.editor_vs.session.setMode(new GLSLMode());
-    this.editor_vs.setValue(vsp);
-    this.editor_vs.clearSelection();
 
-    this.editor_vs.getSession().on('change', function(e) {
-        // e.type, etc
-        vsp = window.editor_vs.getValue();
-        window.parent.renderer.updateShader(vsp, fsp);
-    });
 
-    this.editor_vs.commands.addCommand({
-        name: 'save to',
-        bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
-        exec: function(editor) {
-            //...
-            console.info("edit saving...");
-            vsp = editor.getValue();
-            window.parent.renderer.updateShader(vsp, fsp);
-        },
-        readOnly: true // false if this command should not apply in readOnly mode
-    });
+    var vseditor = new editor.AceEditorWindow("vs-editor-panel");
+    vseditor.setChangeCallback( function(str) {
+        window.parent.renderer.updateShader(str, null);
+    } )
 
-    this.editor_fs = ace.edit("fs-editor-panel");
-    this.editor_fs.setTheme('ace/theme/twilight');
-    var GLSLMode = ace.require("ace/mode/glsl").Mode;
-    this.editor_fs.session.setMode(new GLSLMode());
-    this.editor_fs.setValue(fsp);
-    this.editor_fs.clearSelection();
-
-    this.editor_fs.getSession().on('change', function(e) {
-        // e.type, etc
-        fsp = window.editor_fs.getValue();
-        window.parent.renderer.updateShader(vsp, fsp);
-    });
-
-    this.editor_fs.commands.addCommand({
-        name: 'save to',
-        bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
-        exec: function(editor) {
-            //...
-            console.info("edit saving...");
-            fsp = editor.getValue();
-            window.parent.renderer.updateShader(vsp, fsp);
-        },
-        readOnly: true // false if this command should not apply in readOnly mode
-    });
-
+    var fseditor = new editor.AceEditorWindow("fs-editor-panel");
+    fseditor.setChangeCallback( function(str) {
+        window.parent.renderer.updateShader(null, str);
+    } );
 
     //logger = window.parent.logger;
     logger.init(bid('console-log-container'));
