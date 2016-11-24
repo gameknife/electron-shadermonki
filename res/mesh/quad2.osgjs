@@ -1,0 +1,249 @@
+{
+  "Generator": "OpenSceneGraph 3.5.4",
+  "Version": 9,
+  "osg.Node": {
+    "Children": [ {
+      "osg.MatrixTransform": {
+        "UniqueID": 0,
+        "Name": "fc2211c8bdc74a278e8b80ce09b87a00.fbx",
+        "Children": [ {
+          "osg.MatrixTransform": {
+            "UniqueID": 2,
+            "Name": "RootNode",
+            "Children": [ {
+              "osg.MatrixTransform": {
+                "UniqueID": 5,
+                "Name": "Plane_2",
+                "Children": [ {
+                  "osg.Node": {
+                    "UniqueID": 6,
+                    "Name": "Plane_2",
+                    "Children": [ {
+                      "osg.Geometry": {
+                        "UniqueID": 7,
+                        "Name": "Plane_2__0",
+                        "PrimitiveSetList": [ {
+                          "DrawElementsUByte": {
+                            "UniqueID": 13,
+                            "Indices": {
+                              "UniqueID": 14,
+                              "Array": { 
+                                "Uint8Array": { 
+                                  "File": "model_file.bin.gz",
+                                  "Size": 6,
+                                  "Offset": 0
+                                }
+                              },
+                              "ItemSize": 1,
+                              "Type": "ELEMENT_ARRAY_BUFFER"
+                            },
+                            "Mode": "TRIANGLE_STRIP"
+                          }
+                        } ],
+                        "UserDataContainer": {
+                          "UniqueID": 8,
+                          "Values": [ {
+                            "Name": "attributes",
+                            "Value": "55"
+                          },
+                          {
+                            "Name": "vertex_bits",
+                            "Value": "8"
+                          },
+                          {
+                            "Name": "vertex_mode",
+                            "Value": "3"
+                          },
+                          {
+                            "Name": "uv_0_bits",
+                            "Value": "8"
+                          },
+                          {
+                            "Name": "uv_0_mode",
+                            "Value": "3"
+                          },
+                          {
+                            "Name": "epsilon",
+                            "Value": "0.25"
+                          },
+                          {
+                            "Name": "nphi",
+                            "Value": "720"
+                          },
+                          {
+                            "Name": "triangle_mode",
+                            "Value": "7"
+                          },
+                          {
+                            "Name": "vtx_bbl_x",
+                            "Value": "-200"
+                          },
+                          {
+                            "Name": "vtx_bbl_y",
+                            "Value": "0"
+                          },
+                          {
+                            "Name": "vtx_bbl_z",
+                            "Value": "-200"
+                          },
+                          {
+                            "Name": "vtx_h_x",
+                            "Value": "3.14961"
+                          },
+                          {
+                            "Name": "vtx_h_y",
+                            "Value": "7.87402e-08"
+                          },
+                          {
+                            "Name": "vtx_h_z",
+                            "Value": "7.08661"
+                          },
+                          {
+                            "Name": "uv_0_bbl_x",
+                            "Value": "0"
+                          },
+                          {
+                            "Name": "uv_0_bbl_y",
+                            "Value": "0"
+                          },
+                          {
+                            "Name": "uv_0_h_x",
+                            "Value": "0.00787402"
+                          },
+                          {
+                            "Name": "uv_0_h_y",
+                            "Value": "0.00787402"
+                          } ]
+                        },
+                        "VertexAttributeList": {
+                          "Normal": {
+                            "UniqueID": 10,
+                            "Array": { 
+                              "Uint32Array": { 
+                                "File": "model_file.bin.gz",
+                                "Size": 8,
+                                "Offset": 8,
+                                "Encoding": "varint"
+                              }
+                            },
+                            "ItemSize": 2,
+                            "Type": "ARRAY_BUFFER"
+                          },
+                          "Tangent": {
+                            "UniqueID": 12,
+                            "Array": { 
+                              "Uint32Array": { 
+                                "File": "model_file.bin.gz",
+                                "Size": 8,
+                                "Offset": 40,
+                                "Encoding": "varint"
+                              }
+                            },
+                            "ItemSize": 2,
+                            "Type": "ARRAY_BUFFER"
+                          },
+                          "TexCoord0": {
+                            "UniqueID": 11,
+                            "Array": { 
+                              "Int32Array": { 
+                                "File": "model_file.bin.gz",
+                                "Size": 8,
+                                "Offset": 64,
+                                "Encoding": "varint"
+                              }
+                            },
+                            "ItemSize": 2,
+                            "Type": "ARRAY_BUFFER"
+                          },
+                          "Vertex": {
+                            "UniqueID": 9,
+                            "Array": { 
+                              "Int32Array": { 
+                                "File": "model_file.bin.gz",
+                                "Size": 8,
+                                "Offset": 88,
+                                "Encoding": "varint"
+                              }
+                            },
+                            "ItemSize": 3,
+                            "Type": "ARRAY_BUFFER"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "osg.Geometry": {
+                        "UniqueID": 15,
+                        "Name": "Plane_2__0",
+                        "PrimitiveSetList": [ {
+                          "DrawElementsUByte": {
+                            "UniqueID": 17,
+                            "Indices": {
+                              "UniqueID": 18,
+                              "Array": { 
+                                "Uint8Array": { 
+                                  "File": "model_file_wireframe.bin.gz",
+                                  "Size": 16,
+                                  "Offset": 0
+                                }
+                              },
+                              "ItemSize": 1,
+                              "Type": "ELEMENT_ARRAY_BUFFER"
+                            },
+                            "Mode": "LINES"
+                          }
+                        } ],
+                        "UserDataContainer": {
+                          "UniqueID": 16,
+                          "Values": [ {
+                            "Name": "wireframe",
+                            "Value": "1"
+                          },
+                          {
+                            "Name": "attributes",
+                            "Value": "1"
+                          } ]
+                        },
+                        "VertexAttributeList": {
+                          "Vertex": {
+                            "UniqueID": 9
+                          }
+                        }
+                      }
+                    } ]
+                  }
+                } ],
+                "Matrix": [ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, -500, 1 ]
+              }
+            } ],
+            "Matrix": [ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 ],
+            "StateSet": {
+              "osg.StateSet": {
+                "UniqueID": 3,
+                "UserDataContainer": {
+                  "UniqueID": 4,
+                  "Values": [ {
+                    "Name": "UniqueID",
+                    "Value": "1"
+                  } ]
+                }
+              }
+            }
+          }
+        } ],
+        "Matrix": [ 1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1 ],
+        "UserDataContainer": {
+          "UniqueID": 1,
+          "Values": [ {
+            "Name": "source",
+            "Value": "fbx"
+          },
+          {
+            "Name": "authoring_tool",
+            "Value": "CINEMA 4D R17"
+          } ]
+        }
+      }
+    } ]
+  }
+}

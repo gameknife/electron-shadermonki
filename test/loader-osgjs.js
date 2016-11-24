@@ -7,7 +7,7 @@ var loader_osgjs = require('../lib/loader/loader-osgjs.js');
 test('loader-osgjs', function (t) {
     t.plan(1);
 
-    loader_osgjs.load( "./res/mesh/forest.osgjs", "./res/mesh/forest.osgjs.bin", function(res) {
+    loader_osgjs.load( "./res/mesh/box100.osgjs", "./res/mesh/box100.osgjs.bin", function(res) {
         //t.message( res );
     } );
 
