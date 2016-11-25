@@ -47,7 +47,7 @@ window.onload = function(){
     vseditor.loadFile('res/shader/base_vs.glsl');
     fseditor.loadFile('res/shader/base_fs.glsl');
 
-    let defaultmesh = resMgr.gResmgr.get_res('res/mesh/forest.osgjs');
+    let defaultmesh = resMgr.gResmgr.get_res('res/package/forest/forest.osgjs');
     let defaulttex = resMgr.gResmgr.get_res('res/texture/ground.jpg');
     renderer.updateMesh(defaultmesh);
     renderer.updateTexure(defaulttex);
