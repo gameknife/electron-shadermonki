@@ -20,6 +20,7 @@ void main(){
     vec4 samplerColor2 = vec4(vNormal * vec3(0.5,0.5,0.5) + vec3(0.5,0.5,0.5),1);
     float ndotl = max(0.0, dot(_LIGHTDIR.xyz, vNormal));
     vec4 samplerColor = texture2D(texture, vTexCoord.xy);
+    samplerColor *= samplerColor;
     if(samplerColor.a < 0.5) discard;
     samplerColor = samplerColor * (ndotl + vec4(0.3,0.4,0.5,1.0) * (vNormal.y * 0.4 + 0.6));
     samplerColor.a = 1.0;

@@ -8,7 +8,7 @@ var path = require('path');
 test('loader-osgjs', function (t) {
     t.plan(1);
 
-    fs.readFile('res/package/list.txt', 'utf-8', function(err, data) {
+    fs.readFile('res/package/blacksmith/list.txt', 'utf-8', function(err, data) {
         if(err)
         {
 
@@ -20,13 +20,13 @@ test('loader-osgjs', function (t) {
             let imgs = text.split('\r\n');
             imgs.forEach(img => {
 
-                let side = img.split('-');
+                let side = img.split('#');
                 let orgfile = path.basename(side[0]);
                 let newfile = side[1];
 
                 if(orgfile && newfile)
                 {
-                    fs.rename( 'res/package/' + orgfile, 'res/package/' + newfile );
+                    fs.rename( 'res/package/blacksmith/' + orgfile, 'res/package/blacksmith/' + newfile );
                 }
             });
 
