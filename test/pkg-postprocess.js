@@ -8,7 +8,9 @@ var path = require('path');
 test('loader-osgjs', function (t) {
     t.plan(1);
 
-    fs.readFile('res/package/blacksmith/list.txt', 'utf-8', function(err, data) {
+    let basepath = 'res/package/game/';
+
+    fs.readFile(basepath + 'list.txt', 'utf-8', function(err, data) {
         if(err)
         {
 
@@ -23,12 +25,22 @@ test('loader-osgjs', function (t) {
                 let side = img.split('#');
                 let orgfile = path.basename(side[0]);
                 let newfile = side[1];
-
+                console.info(basepath + orgfile + ' : ' + basepath + newfile);
                 if(orgfile && newfile)
                 {
-                    fs.rename( 'res/package/blacksmith/' + orgfile, 'res/package/blacksmith/' + newfile );
+                    //console.info(basepath + orgfile + ' : ' + basepath + newfile);
+                    //if(fs.existsSync(basepath + orgfile) )
+                    {
+                        fs.rename( basepath + orgfile, basepath + newfile );
+                    }
                 }
             });
+
+            //if(fs.existsSync(basepath + 'file.osgjs.gz') )
+            {
+                fs.rename( basepath + 'file.osgjs.gz', basepath + 'model.osgjs' );
+                fs.rename( basepath + 'model_file.bin.gz', basepath + 'model.osgjs.bin' );
+            }
 
         }
     });

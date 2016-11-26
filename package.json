@@ -9,7 +9,8 @@
     "watch-js": "watchify main.js -o bundle.js -dv",
     "build-js": "browserify main.js > bundle.js",
     "test": "tape test/loader-osgjs.js",
-    "pkg-postprocess": "tape test/pkg-postprocess.js"
+    "pkg-postprocess": "tape test/pkg-postprocess.js",
+    "package-build": "tape test/package-build.js"
   },
   "repository": "https://github.com/gameknife/electron-shadermonki",
   "keywords": [
