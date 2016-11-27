@@ -79,8 +79,8 @@ function DownloadFile(dir, osgfile, downloadfile) {
 
     let absDir = path.join(dir, downloadfile);
     try {
-        fs.accessSync(absDir, fs.F_OK);
-    } catch (e) {
+         fs.accessSync(absDir, fs.F_OK);
+     } catch (e) {
         var file = fs.createWriteStream(absDir);
         var request = https.get(osgfile, function (response) {
 
@@ -97,9 +97,29 @@ function DownloadFile(dir, osgfile, downloadfile) {
                     break;
             }
 
-            file.on('finish', function () {
-                file.close();  // close() is async, call cb after close completes.
+            var len = parseInt(response.headers['content-length'], 10);
+            var body = "";
+            var cur = 0;
+            var total = len / 1048576; //1048576 - bytes in  1Megabyte
+
+            response.on("data", function(chunk) {
+                body += chunk;
+                cur += chunk.length;
+
+                let outData = "Downloading " + downloadfile + ' - ' +  (100.0 * cur / len).toFixed(2) + "% ";
+
+                //console.log('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n');
+                console.log(outData);
             });
+
+            response.on("end", function() {
+                //callback(body);
+                file.close();
+            });
+
+            //file.on('finish', function () {
+            //    file.close();  // close() is async, call cb after close completes.
+            //});
         });
     }
 }
@@ -145,7 +165,7 @@ function ParsePkg( pkgObject, dir ){
                 for( let i=0; i < images.length; ++i)
                 {
                     let currImage = images[i];
-                    console.info(images[i]);
+                    //console.info(images[i]);
 
                     if( currImage.width > maxWidth )
                     {
@@ -155,6 +175,7 @@ function ParsePkg( pkgObject, dir ){
                 }
                 console.info(toplodurl);
                 let ext = path.extname(toplodurl);
+                console.info( name + ext);
                 DownloadFile( dir, toplodurl, name + ext );
 
             }
