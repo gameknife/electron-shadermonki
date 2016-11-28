@@ -48,7 +48,7 @@ window.onload = function(){
     fseditor.loadFile('res/shader/base_fs.glsl');
 
     let defaultmesh = resMgr.gResmgr.get_res('res/mesh/head.fbx');
-    let defaulttex = resMgr.gResmgr.get_res('res/texture/plaster.jpg');
+    let defaulttex = resMgr.gResmgr.get_res('res/texture/ground.jpg');
     renderer.updateMesh(defaultmesh);
     renderer.updateTexure(defaulttex);
 

@@ -9,7 +9,7 @@ varying vec3 vNormal;
 
 void main(){
     vTexCoord = (position * 0.075).xy;
-    //vTexCoord = texcoord;\r\
+    vTexCoord = texcoord;
     vNormal = (_M2W * vec4(normal, 0.0)).xyz;
     /*gl_Position = vec4(position, 1.0);*/
     gl_Position = _MVP * vec4(position, 1.0);

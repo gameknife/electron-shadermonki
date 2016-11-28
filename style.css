@@ -190,6 +190,8 @@ html, body {
     transition: all .1s ease-in-out;
 
     background: #333;
+
+    white-space: nowrap;
 }
 
 .obj-line-checked {
