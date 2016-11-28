@@ -32,7 +32,7 @@ test('package-build', function (t) {
                 fs.accessSync(pkgDir, fs.F_OK);
 
                 // TODO to remove
-                //packageWaitForBuild.push(item);
+                packageWaitForBuild.push(item);
             } catch (e) {
                 // It isn't accessible
 
@@ -173,9 +173,9 @@ function ParsePkg( pkgObject, dir ){
                         toplodurl = currImage.url;
                     }
                 }
-                console.info(toplodurl);
+                //console.info(toplodurl);
                 let ext = path.extname(toplodurl);
-                console.info( name + ext);
+                //console.info( dir + ':' + name + ext);
                 DownloadFile( dir, toplodurl, name + ext );
 
             }
