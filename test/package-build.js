@@ -32,7 +32,7 @@ test('package-build', function (t) {
                 fs.accessSync(pkgDir, fs.F_OK);
 
                 // TODO to remove
-                packageWaitForBuild.push(item);
+                //packageWaitForBuild.push(item);
             } catch (e) {
                 // It isn't accessible
 
@@ -114,7 +114,7 @@ function DownloadFile(dir, osgfile, downloadfile) {
 
             response.on("end", function() {
                 //callback(body);
-                file.close();
+                //file.close();
             });
 
             //file.on('finish', function () {
@@ -130,8 +130,8 @@ function ParsePkg( pkgObject, dir ){
     // mesh files
     let osgfile = pkgObject.files[0].osgjsUrl;
     let osgModelfile = osgfile.replace('file.osgjs.gz', 'model_file.bin.gz');
-    //DownloadFile(dir, osgfile, 'model.osgjs');
-    //DownloadFile(dir, osgModelfile, 'model.osgjs.bin');
+    DownloadFile(dir, osgfile, 'model.osgjs');
+    DownloadFile(dir, osgModelfile, 'model.osgjs.bin');
 
     // material files
     let options = pkgObject.options;
