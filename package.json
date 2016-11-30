@@ -40,6 +40,6 @@
     "fs-extra": "^1.0.0",
     "bluebird": "^3.4.6",
     "fs-promise": "^1.0.0",
-    "math3d": "0.2.2"
+    "gl-matrix": "2.3.2"
   }
 }
