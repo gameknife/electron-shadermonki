@@ -9,6 +9,44 @@ const mouse     = require('./lib/gk-mouseorbit');
 const resMgr       = require('./lib/gk-resmgr');
 const resPanel  = require('./lib/gk-respanel');
 const acEditor    = require('./lib/gk-acewrap');
+const Fabricate = require('./lib/fabricate');
+
+class Clickable {
+    select() {
+        console.log("Clicked "+this.host.name);
+    }
+}
+
+class Focusable {
+    focus() {
+        console.log("Focused me");
+        // swap to a focused skin
+    }
+    blur() {
+        console.log("Blurred me");
+        // swap to blurred skin
+    }
+}
+
+class Expandable {
+    onSelect() {
+        this.expanded = !!this.expanded;
+    }
+}
+
+class ScrollableList {
+    // ...
+}
+
+const Button = {
+    defaultSkin: "blue_steel",
+    components: [Clickable, Focusable]
+}
+
+const DropDown = {
+    defaultSkin: "blue_steel",
+    components: [Clickable, Focusable, Expandable, ScrollableList]
+}
 
 // initial
 window.onload = function(){
@@ -51,6 +89,12 @@ window.onload = function(){
     let defaulttex = resMgr.gResmgr.get_res('res/texture/ground.jpg');
     renderer.updateMesh(defaultmesh);
     renderer.updateTexure(defaulttex);
+
+
+
+    let MyButton = Fabricate(Button);
+    MyButton.name = "MyButton";
+    MyButton.components.get(Clickable).select();
 
     // temporary feature
     let holder = bid('mesh-holder');
