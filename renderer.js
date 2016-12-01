@@ -1,15 +1,16 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
-'use strict'
+'use strict';
 
-const logger    = require('./lib/gk-logger');
-const glw       = require('./lib/gk-glwrap');
-const mouse     = require('./lib/gk-mouseorbit');
-const resMgr       = require('./lib/gk-resmgr');
-const resPanel  = require('./lib/gk-respanel');
-const acEditor    = require('./lib/gk-acewrap');
-const Fabricate = require('./lib/fabricate');
+const logger            = require('./lib/gk-logger');
+const glw               = require('./lib/gk-glwrap');
+const mouse             = require('./lib/gk-mouseorbit');
+const resMgr            = require('./lib/gk-resmgr');
+const resPanel          = require('./lib/gk-respanel');
+const acEditor          = require('./lib/gk-acewrap');
+const Fabricate         = require('./lib/fabricate');
+const Framework         = require('./lib/gk-framework');
 
 class Clickable {
     select() {
@@ -56,10 +57,8 @@ window.onload = function(){
 
     // initialize rendering
     var canvas = bid('canvas');
-    var renderer = window.parent.renderer;
     glw.initGL(canvas);
     if(!glw.ready){console.log('initialize error'); return;}
-    renderer.init();
 
     // initialize mouse orbit
     mouse.init(canvas);
@@ -73,23 +72,17 @@ window.onload = function(){
     // create editor
     var vseditor = new acEditor.AceEditorWindow("vs-editor-panel");
     vseditor.setChangeCallback( function(str) {
-        window.parent.renderer.updateShader(str, null);
+        //window.parent.renderer.updateShader(str, null);
     } )
 
     var fseditor = new acEditor.AceEditorWindow("fs-editor-panel");
     fseditor.setChangeCallback( function(str) {
-        window.parent.renderer.updateShader(null, str);
+        //window.parent.renderer.updateShader(null, str);
     } );
 
     // default assets loading
     vseditor.loadFile('res/shader/base_vs.glsl');
     fseditor.loadFile('res/shader/base_fs.glsl');
-
-    let defaultmesh = resMgr.gResmgr.get_res('res/mesh/head.fbx');
-    let defaulttex = resMgr.gResmgr.get_res('res/texture/ground.jpg');
-    renderer.updateMesh(defaultmesh);
-    renderer.updateTexure(defaulttex);
-
 
 
     let MyButton = Fabricate(Button);
@@ -120,7 +113,7 @@ window.onload = function(){
                 // load mesh here
                 resobj.load();
                 resPanel.refresh();
-                window.parent.renderer.updateMesh(resobj);
+                //window.parent.renderer.updateMesh(resobj);
             }
 
         }
@@ -154,7 +147,7 @@ window.onload = function(){
                 // load mesh here
                 resobj.load();
                 resPanel.refresh();
-                window.parent.renderer.updateTexure(resobj);
+                //window.parent.renderer.updateTexure(resobj);
             }
 
         }
@@ -165,6 +158,9 @@ window.onload = function(){
         ev.preventDefault();
     }
 
+    // framework start
+    let framework = new Framework();
+    framework.init();
 
 
 
@@ -178,7 +174,7 @@ window.onload = function(){
     function render_loop()
     {
         if(window.running) {
-            renderer.render();
+            framework.update();
         }
         requestAnimationFrame(render_loop);
     }
@@ -196,8 +192,7 @@ window.onload = function(){
         // btn control
         let playBtn = bid('btn_auto_rotate');
         playBtn.onclick = function () {
-            renderer.autoRotate = !renderer.autoRotate;
-            refresh_playbtn('btn_auto_rotate', 'btn_square', renderer.autoRotate);
+            //refresh_playbtn('btn_auto_rotate', 'btn_square', renderer.autoRotate);
         }
     }
 
