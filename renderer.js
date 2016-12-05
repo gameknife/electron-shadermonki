@@ -3,6 +3,8 @@
 // All of the Node.js APIs are available in this process.
 'use strict';
 
+const gkCore            = require('./lib/gk-core');
+
 const logger            = require('./lib/gk-logger');
 const glw               = require('./lib/gk-glwrap');
 const mouse             = require('./lib/gk-mouseorbit');
