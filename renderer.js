@@ -10,46 +10,7 @@ const glw               = require('./lib/gk-glwrap');
 const mouse             = require('./lib/gk-mouseorbit');
 const resMgr            = require('./lib/gk-resmgr');
 const resPanel          = require('./lib/gk-respanel');
-const acEditor          = require('./lib/gk-acewrap');
-const Fabricate         = require('./lib/fabricate');
 const Framework         = require('./lib/gk-framework');
-
-class Clickable {
-    select() {
-        console.log("Clicked "+this.host.name);
-    }
-}
-
-class Focusable {
-    focus() {
-        console.log("Focused me");
-        // swap to a focused skin
-    }
-    blur() {
-        console.log("Blurred me");
-        // swap to blurred skin
-    }
-}
-
-class Expandable {
-    onSelect() {
-        this.expanded = !!this.expanded;
-    }
-}
-
-class ScrollableList {
-    // ...
-}
-
-const Button = {
-    defaultSkin: "blue_steel",
-    components: [Clickable, Focusable]
-}
-
-const DropDown = {
-    defaultSkin: "blue_steel",
-    components: [Clickable, Focusable, Expandable, ScrollableList]
-}
 
 // initial
 window.onload = function(){
@@ -70,26 +31,6 @@ window.onload = function(){
     resPanel.rescan_resources();
     resPanel.reconstruct_filetree();
     resPanel.refresh();
-
-    // create editor
-    var vseditor = new acEditor.AceEditorWindow("vs-editor-panel");
-    vseditor.setChangeCallback( function(str) {
-        //window.parent.renderer.updateShader(str, null);
-    } )
-
-    var fseditor = new acEditor.AceEditorWindow("fs-editor-panel");
-    fseditor.setChangeCallback( function(str) {
-        //window.parent.renderer.updateShader(null, str);
-    } );
-
-    // default assets loading
-    vseditor.loadFile('res/shader/base_vs.glsl');
-    fseditor.loadFile('res/shader/base_fs.glsl');
-
-
-    let MyButton = Fabricate(Button);
-    MyButton.name = "MyButton";
-    MyButton.components.get(Clickable).select();
 
     // temporary feature
     let holder = bid('mesh-holder');
