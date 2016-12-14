@@ -6,4 +6,5 @@ bundle.js
 *.log
 *.c4d
 res/package
+res/source
 electron-shadermonki*
