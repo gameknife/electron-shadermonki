@@ -34,6 +34,7 @@ window.onload = function(){
 
     // temporary feature
     let holder = bid('mesh-holder');
+    let holderGameObject = null;
     holder.ondrop = function( ev ) {
 
         ev.preventDefault();
@@ -56,7 +57,18 @@ window.onload = function(){
                 // load mesh here
                 resobj.load();
                 resPanel.refresh();
-                //window.parent.renderer.updateMesh(resobj);
+
+// load a mesh into gameobject struct
+
+                if(holderGameObject !== null)
+                {
+                    holderGameObject.transform.parent = null;
+                }
+                // bind it to scene root
+                resobj.gameObject.transform.parent = gkCore.sceneMgr.getSceneRoot().transform;
+                holderGameObject = resobj.gameObject;
+
+
             }
 
         }
