@@ -11,6 +11,7 @@ const mouse             = require('./lib/gk-mouseorbit');
 const resMgr            = require('./lib/gk-resmgr');
 const resPanel          = require('./lib/gk-respanel');
 const Framework         = require('./lib/gk-framework');
+const exporter_obj      = require('./lib/exporter/exporter-obj');
 
 // initial
 window.onload = function(){
@@ -149,6 +150,11 @@ window.onload = function(){
         playBtn.onclick = function () {
             //refresh_playbtn('btn_auto_rotate', 'btn_square', renderer.autoRotate);
         }
+    }
+
+    let expBtn = bid('exporter');
+    expBtn.onclick = function () {
+        exporter_obj.exportNode( holderGameObject.transform );
     }
 
 };
