@@ -12,6 +12,7 @@ const resMgr            = require('./lib/gk-resmgr');
 const resPanel          = require('./lib/gk-respanel');
 const Framework         = require('./lib/gk-framework');
 const exporter_obj      = require('./lib/exporter/exporter-obj');
+const packageBuilder    = require('./lib/util/package-builder');
 
 // initial
 window.onload = function(){
@@ -157,6 +158,15 @@ window.onload = function(){
         exporter_obj.exportNode( holderGameObject.transform );
     }
 
+    
+    let buildBtn = bid('builder');
+    buildBtn.onclick = function () {
+        packageBuilder.build();
+
+        resPanel.rescan_resources();
+        resPanel.reconstruct_filetree();
+        resPanel.refresh();
+    }
 };
 
 function refresh_playbtn( element_id, element_class, swt ) {
