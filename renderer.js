@@ -13,7 +13,7 @@ const resPanel          = require('./lib/gk-respanel');
 const Framework         = require('./lib/gk-framework');
 const exporter_obj      = require('./lib/exporter/exporter-obj');
 const packageBuilder    = require('./lib/util/package-builder');
-
+const path              = require('path');
 // initial
 window.onload = function(){
     // init logger
@@ -37,6 +37,7 @@ window.onload = function(){
     // temporary feature
     let holder = bid('mesh-holder');
     let holderGameObject = null;
+    let current_proj = '';
     holder.ondrop = function( ev ) {
 
         ev.preventDefault();
@@ -46,6 +47,8 @@ window.onload = function(){
         let resobj = resMgr.gResmgr.get_res(filetoken);
         if( resobj !== null )
         {
+            current_proj = path.dirname(filetoken) + '/';
+
             type = resobj.get_type();
 
             if(type === resMgr.RESTYPE.MESH)
@@ -60,7 +63,7 @@ window.onload = function(){
                 resobj.load();
                 resPanel.refresh();
 
-// load a mesh into gameobject struct
+                // load a mesh into gameobject struct
 
                 if(holderGameObject !== null)
                 {
@@ -155,7 +158,7 @@ window.onload = function(){
 
     let expBtn = bid('exporter');
     expBtn.onclick = function () {
-        exporter_obj.exportNode( holderGameObject.transform );
+        exporter_obj.exportNode( holderGameObject.transform, current_proj );
     }
 
     
