@@ -35,8 +35,11 @@ npm start
 ### Future Task
 
 1. binary fbx mesh loader
-1. resource management
-1. unity3d like gameobject & component system
+1. ~~resource management~~
+1. ~~unity3d like gameobject & component system~~
+1. ~~osgjs mesh loader~~
+1. ~~obj format exporter~~
+1. ~~gl-matrix-integrate~~
 1. real-time shadow & lightmap support
 1. deferred shading chain & ssao
 
