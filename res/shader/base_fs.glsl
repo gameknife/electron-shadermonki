@@ -23,8 +23,8 @@ void main(){
     vec4 samplerColor = texture2D(_MainTex, vTexCoord.xy);
     vec4 alphaSamplerColor = texture2D(_AlphaTex, vTexCoord.xy);
     samplerColor *= samplerColor;
-    samplerColor.a *= alphaSamplerColor.a;
-    if(samplerColor.a < 0.25) discard;
+    samplerColor.a *= alphaSamplerColor.r * alphaSamplerColor.a;
+    if(samplerColor.a < 0.05) discard;
     samplerColor = samplerColor * (ndotl + vec4(0.3,0.4,0.5,1.0) * (vNormal.y * 0.4 + 0.6));
     samplerColor.a = 1.0;
     gl_FragColor = sqrt(samplerColor);
