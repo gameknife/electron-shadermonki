@@ -14,6 +14,7 @@ const Framework         = require('./lib/gk-framework');
 const exporter_obj      = require('./lib/exporter/exporter-obj');
 const packageBuilder    = require('./lib/util/package-builder');
 const path              = require('path');
+
 // initial
 window.onload = function(){
     // init logger
@@ -159,16 +160,6 @@ window.onload = function(){
     let expBtn = bid('exporter');
     expBtn.onclick = function () {
         exporter_obj.exportNode( holderGameObject.transform, current_proj );
-    }
-
-    
-    let buildBtn = bid('builder');
-    buildBtn.onclick = function () {
-        packageBuilder.build();
-
-        resPanel.rescan_resources();
-        resPanel.reconstruct_filetree();
-        resPanel.refresh();
     }
 };
 

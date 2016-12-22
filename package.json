@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "pack": "electron-packager . --all",
+    "pack": "electron-packager . --platform=win32 --arch=all",
     "watch-js": "watchify main.js -o bundle.js -dv",
     "build-js": "browserify main.js > bundle.js",
     "test": "tape test/loader-osgjs.js",

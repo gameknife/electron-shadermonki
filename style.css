@@ -167,7 +167,7 @@ html, body {
     flex-direction: column;
 }
 
-#left .obj-container {
+.obj-container {
     flex: 1;
     background-color: #333;
     overflow:scroll;
