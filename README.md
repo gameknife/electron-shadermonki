@@ -40,8 +40,10 @@ npm start
 1. ~~osgjs mesh loader~~
 1. ~~obj format exporter~~
 1. ~~gl-matrix-integrate~~
-1. real-time shadow & lightmap support
+1. ~~real-time shadow~~
+1. lightmap support
 1. deferred shading chain & ssao
+1. progressive rendering
 
 ### Thanks to
 
