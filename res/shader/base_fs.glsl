@@ -28,8 +28,9 @@ void main(){
     vec3 light_hpos = vLightHPos.xyz / vLightHPos.w;
 
     vec4 shadowmap = texture2D(_GlobalShadowMap, light_hpos.xy * 0.5 + vec2(0.5,0.5));
-    float depthA = DecodeFloatRGBA(shadowmap);
-    if(depthA < light_hpos.z - 0.003)
+    //float depthA = DecodeFloatRGBA(shadowmap);
+    float depthA = shadowmap.r;
+    if(depthA < (light_hpos.z * 0.5 + 0.5)  - 0.003)
     {
         depthA = 0.0;
     }
@@ -37,6 +38,7 @@ void main(){
     {
         depthA = 1.0;
     }
+
     vec4 samplerColor1 = vec4(frac(vTexCoord.x + _TIME),frac(vTexCoord.y + _TIME),0,1);
     vec4 samplerColor2 = vec4(vNormal * vec3(0.5,0.5,0.5) + vec3(0.5,0.5,0.5),1);
     float ndotl = max(0.0, dot(_LIGHTDIR.xyz, vNormal));
