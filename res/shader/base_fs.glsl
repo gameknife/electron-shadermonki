@@ -1,11 +1,12 @@
 /*
-
-_MainTex ('Font Texture', 2D) = 'white'
-
+_MainTex ('Main Texture', 2D) = 'white'
+_AlphaTex ('Alpha Texture', 2D) = 'white'
 */
 precision mediump float;
 uniform sampler2D _MainTex;
 uniform sampler2D _AlphaTex;
+uniform sampler2D _GlobalNormalMap;
+uniform sampler2D _GlobalDepthMap;
 uniform sampler2D _GlobalShadowMap;
 varying vec2 vTexCoord;
 varying vec3 vNormal;
