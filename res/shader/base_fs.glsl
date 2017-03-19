@@ -75,7 +75,7 @@ void main(){
     samplerColor *= samplerColor;
     samplerColor.a *= alphaSamplerColor.r * alphaSamplerColor.a;
     if(samplerColor.a < 0.05) discard;
-    samplerColor = samplerColor * (ndotl * shadow + vec4(0.2,0.3,0.7,1.0) * (vNormal.y * 0.4 * shadow + 0.6));
+    samplerColor = samplerColor * (ndotl * shadow + vec4(0.2,0.3,0.7,1.0) * (vNormal.y * 0.4 + 0.6));
     samplerColor.a = 1.0;
     //gl_FragColor = vec4(depthA,depthA,depthA,1.0);
     gl_FragColor = sqrt(samplerColor);
