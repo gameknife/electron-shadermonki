@@ -5,7 +5,7 @@ _AlphaTex ('Alpha Texture', 2D) = 'white'
 precision mediump float;
 uniform sampler2D _MainTex;
 uniform sampler2D _AlphaTex;
-uniform sampler2D _GlobalNormalMap;
+uniform sampler2D _GlobalOccMap;
 uniform sampler2D _GlobalDepthMap;
 uniform sampler2D _GlobalShadowMap;
 varying vec2 vTexCoord;
@@ -66,6 +66,7 @@ void main(){
     float shadow = sampleShadow(light_hpos);
     
     // occlusion
+    //float occ = texture2D(_GlobalOccMap, );
 
     vec4 samplerColor1 = vec4(frac(vTexCoord.x + _TIME),frac(vTexCoord.y + _TIME),0,1);
     vec4 samplerColor2 = vec4(vNormal * vec3(0.5,0.5,0.5) + vec3(0.5,0.5,0.5),1);
