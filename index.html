@@ -18,7 +18,7 @@
     <div id="group_center" class="grp_control">
         <button class="btn_play" id="btn_play"><i class="btm bt-play bt-fw"></i></button>
         <button class="btn_play" id="btn_pause"><i class="btm bt-pause bt-fw"></i></button>
-        <button class="btn_play" id="btn_next"><i class="btm bt-next bt-fw"></i></button>
+        <button class="btn_play" id="btn_next"><i class="btm bt-maximize bt-fw"></i></button>
     </div>
 </div>
 <div id="mainframe">
@@ -28,7 +28,10 @@
             <div class="title-bar">
                 Real-time Preview
             </div>
+
+            <div id="sceneview">
             <canvas id="canvas" class='interactive-frame' width="512" height="512"></canvas>
+            </div>
 
             <div class="canvas-ctlbtn-cgrp">
                 <button class="btn_square" id="btn_auto_rotate"><i class="btm bt-sync bt-spin"></i></button>
@@ -127,6 +130,11 @@
     </div>
 
 </div>
+
+<div id="fullscreen">
+    <!-- <canvas id="canvas1" class='interactive-frame' style='position:absolute; left:0px; top:0px;'></canvas> -->
+</div>
+
 </body>
 
 <script>

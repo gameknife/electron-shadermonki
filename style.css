@@ -297,11 +297,6 @@ html, body {
     background-color: #4a3;
 }
 
-
-.interactive-frame {
-    cursor: pointer;
-}
-
 .parameter-group {
     margin: 10px 2px;
     padding: 2px 2px;
@@ -359,4 +354,20 @@ html, body {
     transition: all .2s ease-in-out;
 
     background: #333;
+}
+
+.interactive-frame {
+    cursor: pointer;
+}
+
+#fullscreen {
+    position: absolute;
+    top: 35px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 10;
+    background: #333;
+    color: #fff;
+    display: inherit;
 }

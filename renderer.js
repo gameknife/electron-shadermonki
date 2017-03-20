@@ -22,6 +22,9 @@ window.onload = function(){
     // initialize rendering
     var canvas = bid('canvas');
     glw.initGL(canvas);
+
+    switch_sceneview(false);
+
     if(!glw.ready){console.log('initialize error'); return;}
 
     // initialize mouse orbit
@@ -118,8 +121,8 @@ window.onload = function(){
     }
 
     // framework start
-    let framework = new Framework();
-    framework.init();
+    window.framework = new Framework();
+    window.framework.init();
 
 
 
@@ -133,7 +136,7 @@ window.onload = function(){
     function render_loop()
     {
         if(window.running) {
-            framework.update();
+            window.framework.update();
         }
         requestAnimationFrame(render_loop);
     }
@@ -155,6 +158,16 @@ window.onload = function(){
         }
     }
 
+    this.fullscreen = false;
+    {
+        // btn control
+        let targetBtn = bid('btn_next');
+        targetBtn.onclick = function () {
+            window.fullscreen = !window.fullscreen;
+            switch_sceneview(window.fullscreen);
+        }
+    }
+
 };
 
 function refresh_playbtn( element_id, element_class, swt ) {
@@ -164,6 +177,38 @@ function refresh_playbtn( element_id, element_class, swt ) {
     }
     else {
         element.className = element_class;
+    }
+}
+
+function switch_sceneview( fsmode ) {
+
+    var canvas_fsholder = bid('fullscreen');
+    var canvas = bid('canvas');
+    var canvas_defaultHolder = bid('sceneview');
+
+    //canvas_fsholder.style.visibility = 'hidden';
+    //canvas_fsholder.appendChild(canvas);
+    //canvas_defaultHolder.appendChild(canvas);
+
+    if( fsmode ) {
+        canvas_fsholder.style.visibility = 'visible';
+        canvas_fsholder.appendChild(canvas);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        if( window.framework != undefined ) {
+            window.framework.renderer.resize( window.innerWidth, window.innerHeight );
+        }
+    }
+    else {
+        canvas_fsholder.style.visibility = 'hidden';
+        canvas_defaultHolder.appendChild(canvas);
+        canvas.width = 512;
+        canvas.height =512;
+
+        if( window.framework != undefined ) {
+            window.framework.renderer.resize(512, 512);
+        }
     }
 }
 
