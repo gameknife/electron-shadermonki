@@ -44,6 +44,7 @@ npm start
 1. lightmap support
 1. deferred shading chain & ssao
 1. progressive rendering
+1. normalmap support
 
 ### Thanks to
 
