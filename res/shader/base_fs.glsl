@@ -11,6 +11,7 @@ uniform sampler2D _GlobalShadowMap;
 varying vec2 vTexCoord;
 varying vec3 vNormal;
 varying vec4 vLightHPos;
+varying vec4 vHpos;
 
 uniform float _TIME;
 uniform vec4 _LIGHTDIR;
@@ -66,7 +67,8 @@ void main(){
     float shadow = sampleShadow(light_hpos);
     
     // occlusion
-    //float occ = texture2D(_GlobalOccMap, );
+    vec2 hposuv = vHpos.xy / vHpos.w;
+    float occ = texture2D(_GlobalOccMap, hposuv).x;
 
     vec4 samplerColor1 = vec4(frac(vTexCoord.x + _TIME),frac(vTexCoord.y + _TIME),0,1);
     vec4 samplerColor2 = vec4(vNormal * vec3(0.5,0.5,0.5) + vec3(0.5,0.5,0.5),1);
@@ -76,7 +78,8 @@ void main(){
     samplerColor *= samplerColor;
     samplerColor.a *= alphaSamplerColor.r * alphaSamplerColor.a;
     if(samplerColor.a < 0.05) discard;
-    samplerColor = samplerColor * (ndotl * shadow + vec4(0.2,0.3,0.7,1.0) * (vNormal.y * 0.4 + 0.6));
+    samplerColor = samplerColor * (ndotl * shadow + vec4(0.2,0.3,0.7,1.0) * (vNormal.y * 0.4 + 0.6)) * occ;
+    //samplerColor.rgb = vec3(occ,occ,occ);
     samplerColor.a = 1.0;
     //gl_FragColor = vec4(depthA,depthA,depthA,1.0);
     gl_FragColor = sqrt(samplerColor);
